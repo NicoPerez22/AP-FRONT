@@ -7,6 +7,7 @@ import { LogoutComponent } from './protected/logout/logout.component';
 export const routes: Routes = [
   {
     path: 'login',
+    title: 'Inicio de sesión',
     component: LoginComponent,
     canActivate: [LoginGuard],
   },
