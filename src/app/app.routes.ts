@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './protected/guards/auth.guard';
+import { LoginGuard } from './protected/guards/login.guard';
 import { LoginComponent } from './protected/login/login.component';
 import { LogoutComponent } from './protected/logout/logout.component';
 
@@ -6,11 +8,13 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'logout',
     title: 'Cierre de sesión',
     component: LogoutComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'dashboard',
@@ -18,7 +22,7 @@ export const routes: Routes = [
       import('./shared/components/dashboard/dashboard.component'),
     loadChildren: () =>
       import('./private/private.routes').then((r) => r.privateRoutes),
-    //   canMatch: [guard],
+    canActivate: [AuthGuard],
   },
   {
     path: '',
