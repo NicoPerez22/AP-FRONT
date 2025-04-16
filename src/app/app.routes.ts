@@ -12,6 +12,12 @@ export const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'register',
+    title: 'Registro',
+    component: LogoutComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'logout',
     title: 'Cierre de sesión',
     component: LogoutComponent,
