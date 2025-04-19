@@ -1,58 +1,33 @@
-<div class="outer">
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                <div class="panel border bg-white">
-                    <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Login</h3>
-                    </div>
-                    <div class="panel-body p-3">
-                        <form [formGroup]="loginForm">
-                            <div class="form-group pt-3">
-                                <div class="input-field"
-                                    [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="username" type="text" placeholder="Username">
-                                </div>
-                            </div>
-                            @if(loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')){
-                            <small class="text-danger">*Username is required</small>
-                            }
+<section class="login__container">
+    <form nz-form [formGroup]="loginForm" class="login__form" (ngSubmit)="onLogin()">
 
-                            <div class="form-group pt-3">
-                                <div class="input-field"
-                                    [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
-                                    <span class="fa fa-lock p-2"></span>
-                                    <input formControlName="password" [type]="type" placeholder="Password">
-                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
-                                </div>
-                            </div>
-                            @if(loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')) {
-                            <small class="text-danger">*Password is required</small>
-                            }
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Debe ingresar su usuario">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="username" placeholder="Username" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
 
-                            <div class="form-inline fr mt-4">
-                                <a id="forget" class="font-weight-bold">Forget Password?</a>
-                            </div>
-                            <!-- <button (click)="onSubmit()" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button> -->
-                            <button (click)="onLogin()" type="submit"
-                                class="btn btn-primary btn-block mt-4 w-100">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't have account? <a id="forget"
-                                    routerLink="/signup">Sign Up</a></div>
-                        </form>
-                    </div>
-                    <div class="mx-3 my-2 py-2 bordert">
-                        <div class="text-center py-3">
-                            <a href="https://www.facebook.com" class="px-2"><img src="https://i.imgur.com/QQ89Rt3.jpeg"
-                                    alt=""></a>
-                            <a href="https://www.google.com" class="px-2"><img src="https://i.imgur.com/Sn7xVtJ.jpeg"
-                                    alt=""></a>
-                            <a href="https://www.github.com" class="px-2"><img src="https://i.imgur.com/J6LeoUb.jpeg"
-                                    alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Debe ingresar una constraseña">
+                <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                    <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
+                        placeholder="Password" />
+                    <ng-template #suffixTemplate>
+                        <nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                            (click)="passwordVisible = !passwordVisible" />
+                    </ng-template>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <button class="button--primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+
+        <section class="login__form--footer">
+            <button class="button--none" type="button">Olvide contraseña</button>
+            <article>No posee una cuenta? <button class="button--none" type="button">Registrese ahora!</button>
+            </article>
+        </section>
+    </form>
+</section>

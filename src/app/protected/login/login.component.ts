@@ -1,16 +1,25 @@
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    NzButtonModule,
+    NzFormModule,
+    NzInputModule,
+    NzIconModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -18,9 +27,8 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
 
-  type: string = 'password';
-  isText: boolean = false;
-  eyeIcon: string = 'fa-eye-slash';
+  passwordVisible = false;
+
   loginForm!: FormGroup;
 
   ngOnInit(): void {
@@ -28,19 +36,6 @@ export class LoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
-  }
-
-  hideShowPass() {
-    this.isText = !this.isText;
-    //this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
-    //this.isText ? this.type = "text" : this.type = "password";
-    if (this.isText) {
-      this.eyeIcon = 'fa-eye';
-      this.type = 'text';
-    } else {
-      this.eyeIcon = 'fa-eye-slash';
-      this.type = 'password';
-    }
   }
 
   onLogin() {
@@ -59,19 +54,7 @@ export class LoginComponent {
       // });
     } else {
       // Throw the error using toaster and with required fields
-      this.validateAllFormFields(this.loginForm);
       //this.toastr.error('Your form is invalid');
     }
-  }
-
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsDirty({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
   }
 }

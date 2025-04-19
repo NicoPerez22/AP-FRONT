@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@use "./resources/styles/variables.scss" as var;
+
+.button--primary {
+  background-color: var.$primary-color;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button--primary:disabled {
+  background-color: #999999;
+  opacity: 0.5;
+}
+
+.button--primary:not(:disabled):hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.button--cancel {
+  background-color: var.$cancel-color;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button--cancel:disabled {
+  background-color: #999999;
+  opacity: 0.5;
+}
+
+.button--cancel:not(:disabled):hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.button--none {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
