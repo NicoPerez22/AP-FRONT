@@ -25,8 +25,9 @@
         <button class="button--primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
 
         <section class="login__form--footer">
-            <button class="button--none" type="button">Olvide contraseña</button>
-            <article>No posee una cuenta? <button class="button--none" type="button">Registrese ahora!</button>
+            <!-- <button class="button--none" type="button">Olvide contraseña</button> -->
+            <article>No posee una cuenta? <button class="button--none" type="button"
+                    (click)="redirectTo('register')">Registrese ahora!</button>
             </article>
         </section>
     </form>

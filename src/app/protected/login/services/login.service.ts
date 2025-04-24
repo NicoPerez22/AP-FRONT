@@ -1,5 +1,7 @@
-import { Injectable, signal } from '@angular/core';
-import { User } from '../../shared/models/user';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { User } from '../../../shared/models/user';
 
 @Injectable({
   providedIn: 'root',

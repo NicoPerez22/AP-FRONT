@@ -10,6 +10,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private loginService = inject(LoginService);
 
   passwordVisible = false;
 
@@ -33,7 +35,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
@@ -56,5 +58,9 @@ export class LoginComponent {
       // Throw the error using toaster and with required fields
       //this.toastr.error('Your form is invalid');
     }
+  }
+
+  redirectTo(path: string) {
+    this.router.navigate([path]);
   }
 }

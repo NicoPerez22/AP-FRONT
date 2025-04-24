@@ -3,6 +3,7 @@ import { AuthGuard } from './protected/guards/auth.guard';
 import { LoginGuard } from './protected/guards/login.guard';
 import { LoginComponent } from './protected/login/login.component';
 import { LogoutComponent } from './protected/logout/logout.component';
+import RegisterComponent from './protected/register/register.component';
 
 export const routes: Routes = [
   {
@@ -14,8 +15,8 @@ export const routes: Routes = [
   {
     path: 'register',
     title: 'Registro',
-    component: LogoutComponent,
-    canActivate: [AuthGuard],
+    component: RegisterComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'logout',

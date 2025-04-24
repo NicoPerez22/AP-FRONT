@@ -1,1 +1,27 @@
-<p>register works!</p>
+<section class="register__container">
+    <form nz-form [formGroup]="registerForm" class="register__form" (ngSubmit)="onRegister()">
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Debe ingresar un email">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="email" placeholder="Email" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Debe ingresar una constraseña">
+                <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                    <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
+                        placeholder="Password" />
+                    <ng-template #suffixTemplate>
+                        <nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                            (click)="passwordVisible = !passwordVisible" />
+                    </ng-template>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <button class="button--primary" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+    </form>
+</section>
