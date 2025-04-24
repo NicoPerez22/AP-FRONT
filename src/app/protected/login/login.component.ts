@@ -10,7 +10,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { LoginService } from './services/login.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { LoginRequest } from './models/login';
+import { HttpLoginService } from './services/http-login.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +29,8 @@ import { LoginService } from './services/login.service';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
-  private loginService = inject(LoginService);
+  private httpLoginService = inject(HttpLoginService);
+  private messageService = inject(NzMessageService);
 
   passwordVisible = false;
 
@@ -42,21 +45,27 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      // Send the obj to databse
-      console.log(this.loginForm.value);
-      // this.auth.login(this.loginForm.value).subscribe({
-      //   next: (res: any) => {
-      //     alert(res.message),
-      //       this.loginForm.reset(),
-      //       this.router.navigate(['dashboard']);
-      //   },
-      //   error: (err: any) => {
-      //     alert(err?.error.message);
-      //   },
-      // });
+      const loginForm: LoginRequest = {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password,
+      };
+      this.httpLoginService.login(loginForm).subscribe({
+        next: (response) => {
+          if (response.data == null && response.httpCode == 200) {
+            this.messageService.error(response?.message);
+          } else if (response?.id) {
+            // this.messageService.success('Se registró correctamente');
+            // setTimeout(() => {
+            //   this.loginForm.reset(), this.router.navigate(['dashboard']);
+            // }, 200);
+          }
+        },
+        error: () => {
+          this.messageService.error('No se pudo ingresar, la conexión falló');
+        },
+      });
     } else {
-      // Throw the error using toaster and with required fields
-      //this.toastr.error('Your form is invalid');
+      this.messageService.error('El formulario es inválido');
     }
   }
 
