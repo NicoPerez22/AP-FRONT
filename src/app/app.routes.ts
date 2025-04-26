@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './protected/guards/auth.guard';
-import { LoginGuard } from './protected/guards/login.guard';
 import { LoginComponent } from './protected/login/login.component';
 import { LogoutComponent } from './protected/logout/logout.component';
 import RegisterComponent from './protected/register/register.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { LoginGuard } from './shared/guards/login.guard';
 
 export const routes: Routes = [
   {
