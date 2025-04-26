@@ -1,25 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { User } from '../../../shared/models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private loggedIn = signal<boolean>(false);
+  private $$user = signal<User | null>(null);
 
-  private user = signal<User | null>(null);
-
-  get isLoggedIn() {
-    return this.loggedIn;
+  get user() {
+    return this.$$user;
   }
 
-  login(): void {
-    this.loggedIn.set(true);
+  login(user: User): void {
+    this.$$user.set(user);
   }
 
   logout(): void {
-    this.loggedIn.set(false);
+    this.$$user.set(null);
   }
 }
