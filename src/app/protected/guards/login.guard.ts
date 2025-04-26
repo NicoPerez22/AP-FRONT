@@ -6,11 +6,11 @@ import { LoginService } from '../login/services/login.service';
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
-  private login = inject(LoginService);
+  private loginService = inject(LoginService);
   private router = inject(Router);
 
   canActivate(): boolean | UrlTree {
-    if (this.login.isLoggedIn()) {
+    if (this.loginService.isAuthenticated()) {
       return this.router.parseUrl('/dashboard');
     }
     return true;

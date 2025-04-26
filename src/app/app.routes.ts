@@ -22,7 +22,6 @@ export const routes: Routes = [
     path: 'logout',
     title: 'Cierre de sesión',
     component: LogoutComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'dashboard',
@@ -30,7 +29,7 @@ export const routes: Routes = [
       import('./shared/components/dashboard/dashboard.component'),
     loadChildren: () =>
       import('./private/private.routes').then((r) => r.privateRoutes),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // Solo accesible si está autenticado
   },
   {
     path: '',
