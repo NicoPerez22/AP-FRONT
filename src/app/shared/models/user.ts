@@ -4,4 +4,5 @@ export interface User {
   apellido: string;
   email: string;
   bearerToken: string;
+  expiryToken: number;
 }
