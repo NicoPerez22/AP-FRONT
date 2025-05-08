@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SpinnerComponent } from '../spinner/spinner.component';
+import { ControlBoardComponent } from '../control-board/control-board.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterOutlet, SpinnerComponent],
+  imports: [ControlBoardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

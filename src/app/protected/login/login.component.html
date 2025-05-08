@@ -3,17 +3,17 @@
 
         <nz-form-item>
             <nz-form-control nzErrorTip="Debe ingresar su usuario">
-                <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="username" placeholder="Username" />
+                <nz-input-group>
+                    <input type="text" nz-input formControlName="username" placeholder="Email" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
             <nz-form-control nzErrorTip="Debe ingresar una constraseña">
-                <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                <nz-input-group [nzSuffix]="suffixTemplate">
                     <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
-                        placeholder="Password" />
+                        placeholder="Contraseña" />
                     <ng-template #suffixTemplate>
                         <nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
                             (click)="passwordVisible = !passwordVisible" />
@@ -23,11 +23,10 @@
         </nz-form-item>
 
         <button class="button--primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
-
         <section class="login__form--footer">
             <!-- <button class="button--none" type="button">Olvide contraseña</button> -->
             <article>No posee una cuenta? <button class="button--none" type="button"
-                    (click)="redirectTo('register')">Registrese ahora!</button>
+                    (click)="redirectTo('register')"><strong>Registrese ahora!</strong></button>
             </article>
         </section>
     </form>

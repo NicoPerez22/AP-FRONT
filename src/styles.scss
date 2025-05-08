@@ -2,7 +2,7 @@
 @use "./resources/styles/variables.scss" as var;
 
 .button--primary {
-  background-color: var.$primary-color;
+  background-color: var.$dark-color;
   color: white;
   border: none;
   padding: 10px 20px;
