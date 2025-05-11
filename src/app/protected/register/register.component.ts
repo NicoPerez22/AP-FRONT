@@ -38,8 +38,12 @@ export default class RegisterComponent {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: this.fb.control<string>('', {
+        validators: [Validators.required, Validators.email],
+      }),
+      password: this.fb.control<string>('', {
+        validators: Validators.required,
+      }),
     });
   }
 
