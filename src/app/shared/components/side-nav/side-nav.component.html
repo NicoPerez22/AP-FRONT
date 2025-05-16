@@ -1,9 +1,13 @@
-<ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+<ul
+  nz-menu
+  nzMode="inline"
+  [nzInlineCollapsed]="sidenavService.$$isCollapsed()"
+>
   <li
     nz-menu-item
     nz-tooltip
     nzTooltipPlacement="right"
-    [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''"
+    [nzTooltipTitle]="sidenavService.$$isCollapsed() ? 'Navigation One' : ''"
     nzSelected
   >
     <nz-icon nzType="mail" />

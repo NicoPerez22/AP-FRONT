@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { SideNavService } from './services/side-nav.service';
 @Component({
   selector: 'app-side-nav',
   imports: [
@@ -19,9 +20,5 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
   styleUrl: './side-nav.component.scss',
 })
 export class SideNavComponent {
-  isCollapsed = false;
-
-  toggleCollapsed(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
+  protected sidenavService = inject(SideNavService);
 }
