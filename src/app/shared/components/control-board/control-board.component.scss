@@ -7,7 +7,7 @@
     "sidebar main"
     "footer footer";
   height: 100vh;
-  gap: 8px;
+  column-gap: 8px;
 }
 
 .header {
@@ -23,9 +23,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 16px;
   box-shadow: 1px 1px 5px rgba(111, 109, 109, 0.5);
   background-color: #f8f9fa;
+
+  & * {
+    width: 100%;
+  }
 }
 
 .main {

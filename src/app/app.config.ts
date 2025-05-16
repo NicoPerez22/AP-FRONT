@@ -4,7 +4,6 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { DropdownModule, SidebarModule } from '@coreui/angular';
 
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
@@ -25,7 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideNzI18n(es_ES),
     importProvidersFrom(FormsModule),
-    importProvidersFrom(SidebarModule, DropdownModule),
     provideAnimationsAsync(),
     provideHttpClient(),
     {

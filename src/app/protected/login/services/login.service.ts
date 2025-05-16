@@ -7,16 +7,16 @@ import { User } from '../../../shared/models/user';
   providedIn: 'root',
 })
 export class LoginService {
-  private $$user = signal<User | null>(null);
+  //private $$user = signal<User | null>(null);
 
-  // private $$user = signal<User | null>({
-  //   id: 1,
-  //   nombre: 'Test',
-  //   apellido: 'Testing',
-  //   email: 'test@mail.com',
-  //   bearerToken: 'Bearer token',
-  //   expiryToken: Date.now() + 1000 * 60 * 60 * 24, // 1 day
-  // });
+  private $$user = signal<User | null>({
+    id: 1,
+    nombre: 'Test',
+    apellido: 'Testing',
+    email: 'test@mail.com',
+    bearerToken: 'Bearer token',
+    expiryToken: Date.now() + 1000 * 60 * 60 * 24, // 1 day
+  });
 
   private http = inject(HttpClient);
   private renewalInterval: any;
