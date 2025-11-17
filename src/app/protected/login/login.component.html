@@ -1,33 +1,70 @@
-<section class="login__container">
-    <form nz-form [formGroup]="loginForm" class="login__form" (ngSubmit)="onLogin()">
+<section class="login__container background">
+  <span class="login__logo">
+    <img [src]="'../../../../public/img/ap-blanco.png'" />
+  </span>
 
-        <nz-form-item>
-            <nz-form-control nzErrorTip="Debe ingresar su usuario">
-                <nz-input-group>
-                    <input type="text" nz-input formControlName="username" placeholder="Email" />
-                </nz-input-group>
-            </nz-form-control>
-        </nz-form-item>
+  <form
+    nz-form
+    [formGroup]="loginForm"
+    class="login__form"
+    (ngSubmit)="onLogin()">
+    <div class="login__title-container">
+      <div class="login__title">
+        <h3>Ingresar</h3>
+      </div>
 
-        <nz-form-item>
-            <nz-form-control nzErrorTip="Debe ingresar una constraseña">
-                <nz-input-group [nzSuffix]="suffixTemplate">
-                    <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
-                        placeholder="Contraseña" />
-                    <ng-template #suffixTemplate>
-                        <nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
-                            (click)="passwordVisible = !passwordVisible" />
-                    </ng-template>
-                </nz-input-group>
-            </nz-form-control>
-        </nz-form-item>
+      <div class="login__subtitle">
+        <h5>Iniciar sesion para continuar</h5>
+      </div>
+    </div>
 
-        <button class="button--primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
-        <section class="login__form--footer">
-            <!-- <button class="button--none" type="button">Olvide contraseña</button> -->
-            <article>No posee una cuenta? <button class="button--none" type="button"
-                    (click)="redirectTo('register')"><strong>Registrese ahora!</strong></button>
-            </article>
-        </section>
-    </form>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Debe ingresar su usuario">
+        <nz-input-group>
+          <input
+            type="text"
+            nz-input
+            formControlName="username"
+            placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Debe ingresar una constraseña">
+        <nz-input-group [nzSuffix]="suffixTemplate">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            nz-input
+            formControlName="password"
+            placeholder="Contraseña" />
+          <ng-template #suffixTemplate>
+            <nz-icon
+              class="ant-input-password-icon"
+              [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible" />
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <button
+      class="login__btn-success"
+      type="submit"
+      [disabled]="loginForm.invalid"
+      >Ingresar</button
+    >
+    <section class="login__form--footer">
+      <!-- <button class="button--none" type="button">Olvide contraseña</button> -->
+      <article
+        >No posee una cuenta?
+        <button
+          class="button--none"
+          type="button"
+          (click)="redirectTo('register')"
+          ><strong>Registrese ahora!</strong></button
+        >
+      </article>
+    </section>
+  </form>
 </section>

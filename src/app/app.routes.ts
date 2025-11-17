@@ -10,7 +10,7 @@ export const routes: Routes = [
     path: 'login',
     title: 'Inicio de sesión',
     component: LoginComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'register',
